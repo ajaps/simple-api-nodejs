@@ -1,0 +1,25 @@
+{
+  "name": "space-x-odyssey",
+  "version": "1.0.0",
+  "description": "Space travel",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "setup": "node create_db.js && node database.js && node flight_table_migration.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ajaps Franklin",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.4.0",
+    "pg": "^8.0.3",
+    "pg-promise": "^10.5.2",
+    "pgtools": "^0.3.0",
+    "sqlite3": "^4.1.1"
+  }
+}
