@@ -1,4 +1,6 @@
+require('dotenv').config()
 const pgp = require('pg-promise')( /* initialization options */ );
+database_name = process.env.NODE_ENV == 'test' ? process.env.TEST_DATABASE : process.env.DEV_DATABASE
 
 const db = pgp({
   database: "postgres",
@@ -6,9 +8,17 @@ const db = pgp({
   user: "postgres"
 });
 
-db.none("CREATE DATABASE $1:name", "space_odyssey")
+db.none("CREATE DATABASE $1:name", process.env.DEV_DATABASE)
   .then((data) => {
-    console.log("Database successfully created");
+    console.log("Dev Database successfully created");
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+db.none("CREATE DATABASE $1:name", process.env.TEST_DATABASE)
+  .then((data) => {
+    console.log("Test Database successfully created");
   })
   .catch((error) => {
     console.log(error);
