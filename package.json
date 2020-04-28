@@ -5,10 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon start.js",
-    "setup": "node create_db.js && node database.js && node flight_history_migration.js",
+    "setup": "node create_db.js && node create_tables.js && node flight_history_migration.js",
     "test": "jest --detectOpenHandles",
-    "pretest": "NODE_ENV=test node database.js && NODE_ENV=test node flight_history_migration.js",
-    "posttest": "NODE_ENV=test node drop_db.js"
+    "pretest": "NODE_ENV=test node clear_tables.js && NODE_ENV=test node create_tables.js && NODE_ENV=test node flight_history_migration.js"
   },
   "jest": {
     "testEnvironment": "node",
@@ -21,8 +20,7 @@
   "devDependencies": {
     "jest": "^25.4.0",
     "nodemon": "^2.0.3",
-    "supertest": "^4.0.2",
-    "pgtools": "^0.3.0"
+    "supertest": "^4.0.2"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
